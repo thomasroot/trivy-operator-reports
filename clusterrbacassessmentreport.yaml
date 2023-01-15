@@ -1,0 +1,81 @@
+apiVersion: aquasecurity.github.io/v1alpha1
+kind: ClusterRbacAssessmentReport
+metadata:
+  creationTimestamp: "2023-01-12T19:34:19Z"
+  generation: 1
+  labels:
+    plugin-config-hash: 659b7b9c46
+    resource-spec-hash: 6d4877bd6c
+    trivy-operator.resource.kind: ClusterRole
+    trivy-operator.resource.name: kube-prometheus-stack-operator
+    trivy-operator.resource.namespace: ""
+  name: clusterrole-kube-prometheus-stack-operator
+  ownerReferences:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    blockOwnerDeletion: false
+    controller: true
+    kind: ClusterRole
+    name: kube-prometheus-stack-operator
+    uid: 8e619aa7-0ecb-4377-b68d-047a0575cf2d
+  resourceVersion: "4714"
+  uid: 3857dac6-da1e-4bf9-8d5f-be3269c3ed35
+report:
+  checks:
+  - category: Kubernetes Security Check
+    checkID: KSV048
+    description: Check whether role permits update/create of a malicious pod
+    messages:
+    - Role permits create/update of a malicious pod
+    severity: HIGH
+    success: false
+    title: Do not allow update/create of a malicious pod
+  - category: Kubernetes Security Check
+    checkID: KSV045
+    description: Check whether role permits wildcard verb on specific resources
+    messages:
+    - Role permits wildcard verb on specific resources
+    severity: CRITICAL
+    success: false
+    title: No wildcard verb roles
+  - category: Kubernetes Security Check
+    checkID: KSV056
+    description: The ability to control which pods get service traffic directed to
+      them allows for interception attacks. Controlling network policy allows for
+      bypassing lateral movement restrictions.
+    messages:
+    - ClusterRole 'kube-prometheus-stack-operator' should not have access to resources
+      ["services", "endpoints", "endpointslices", "networkpolicies", "ingresses"]
+      for verbs ["create", "update", "patch", "delete", "deletecollection", "impersonate",
+      "*"]
+    severity: HIGH
+    success: false
+    title: Do not allow management of networking resources
+  - category: Kubernetes Security Check
+    checkID: KSV041
+    description: Check whether role permits managing secrets
+    messages:
+    - Role permits management of secret(s)
+    severity: CRITICAL
+    success: false
+    title: Do not allow management of secrets
+  - category: Kubernetes Security Check
+    checkID: KSV049
+    description: Some workloads leverage configmaps to store sensitive data or configuration
+      parameters that affect runtime behavior that can be modified by an attacker
+      or combined with another issue to potentially lead to compromise.
+    messages:
+    - ClusterRole 'kube-prometheus-stack-operator' should not have access to resource
+      'configmaps' for verbs ["create", "update", "patch", "delete", "deletecollection",
+      "impersonate", "*"]
+    severity: MEDIUM
+    success: false
+    title: Do not allow management of configmaps
+  scanner:
+    name: Trivy
+    vendor: Aqua Security
+    version: 0.10.1
+  summary:
+    criticalCount: 2
+    highCount: 2
+    lowCount: 0
+    mediumCount: 1

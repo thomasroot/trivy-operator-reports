@@ -1,0 +1,35 @@
+apiVersion: aquasecurity.github.io/v1alpha1
+kind: RbacAssessmentReport
+metadata:
+  annotations:
+    trivy-operator.aquasecurity.github.io/report-ttl: 24h0m0s
+  creationTimestamp: "2023-01-14T14:38:26Z"
+  generation: 1
+  labels:
+    plugin-config-hash: 659b7b9c46
+    resource-spec-hash: 6b9585bb57
+    trivy-operator.resource.kind: Role
+    trivy-operator.resource.name: kube-prometheus-stack-grafana
+    trivy-operator.resource.namespace: default
+  name: role-kube-prometheus-stack-grafana
+  namespace: default
+  ownerReferences:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    blockOwnerDeletion: false
+    controller: true
+    kind: Role
+    name: kube-prometheus-stack-grafana
+    uid: b168b91a-74b9-4522-923c-1ac87a3709f0
+  resourceVersion: "62682"
+  uid: 548a8847-86a2-45bc-8a4b-7dcd5f774ac8
+report:
+  checks: []
+  scanner:
+    name: Trivy
+    vendor: Aqua Security
+    version: 0.10.1
+  summary:
+    criticalCount: 0
+    highCount: 0
+    lowCount: 0
+    mediumCount: 0

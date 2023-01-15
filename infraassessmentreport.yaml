@@ -1,0 +1,130 @@
+apiVersion: aquasecurity.github.io/v1alpha1
+kind: InfraAssessmentReport
+metadata:
+  annotations:
+    trivy-operator.aquasecurity.github.io/report-ttl: 24h0m0s
+  creationTimestamp: "2023-01-14T14:38:19Z"
+  generation: 1
+  labels:
+    plugin-config-hash: 659b7b9c46
+    resource-spec-hash: 76865f676b
+    trivy-operator.resource.kind: Pod
+    trivy-operator.resource.name: kube-apiserver-cks-master
+    trivy-operator.resource.namespace: kube-system
+  name: pod-kube-apiserver-cks-master
+  namespace: kube-system
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: false
+    controller: true
+    kind: Pod
+    name: kube-apiserver-cks-master
+    uid: 25fbbb0a-8924-49e8-aba9-96a9a73d9646
+  resourceVersion: "62662"
+  uid: f880c8d2-2887-480a-97e7-131284ad3511
+report:
+  checks:
+  - category: Kubernetes Security Check
+    checkID: KCV0018
+    description: Disable profiling, if not needed.
+    messages:
+    - Ensure that the --profiling argument is set to false
+    severity: LOW
+    success: false
+    title: Ensure that the --profiling argument is set to false
+  - category: Kubernetes Security Check
+    checkID: KCV0022
+    description: Rotate log files on reaching 100 MB or as appropriate.
+    messages:
+    - Ensure that the --audit-log-maxsize argument is set to 100 or as appropriate
+    severity: LOW
+    success: false
+    title: Ensure that the --audit-log-maxsize argument is set to 100 or as appropriate
+  - category: Kubernetes Security Check
+    checkID: KCV0001
+    description: Disable anonymous requests to the API server.
+    messages:
+    - Ensure that the --anonymous-auth argument is set to false
+    severity: MEDIUM
+    success: false
+    title: Ensure that the --anonymous-auth argument is set to false
+  - category: Kubernetes Security Check
+    checkID: KCV0028
+    description: Setup TLS connection on the API server.
+    messages:
+    - Ensure that the --client-ca-file argument is set as appropriate
+    severity: LOW
+    success: false
+    title: Ensure that the --client-ca-file argument is set as appropriate
+  - category: Kubernetes Security Check
+    checkID: KCV0021
+    description: Retain 10 or an appropriate number of old log files.
+    messages:
+    - Ensure that the --audit-log-maxbackup argument is set to 10 or as appropriate
+    severity: LOW
+    success: false
+    title: Ensure that the --audit-log-maxbackup argument is set to 10 or as appropriate
+  - category: Kubernetes Security Check
+    checkID: KCV0029
+    description: etcd should be configured to make use of TLS encryption for client
+      connections.
+    messages:
+    - Ensure that the --etcd-cafile argument is set as appropriate
+    severity: LOW
+    success: false
+    title: Ensure that the --etcd-cafile argument is set as appropriate
+  - category: Kubernetes Security Check
+    checkID: KCV0006
+    description: Verify kubelet's certificate before establishing connection.
+    messages:
+    - Ensure that the --kubelet-certificate-authority argument is set as appropriate
+    severity: LOW
+    success: false
+    title: Ensure that the --kubelet-certificate-authority argument is set as appropriate
+  - category: Kubernetes Security Check
+    checkID: KCV0013
+    description: The SecurityContextDeny admission controller can be used to deny
+      pods which make use of some SecurityContext fields which could allow for privilege
+      escalation in the cluster. This should be used where PodSecurityPolicy is not
+      in place within the cluster.
+    messages:
+    - Ensure that the admission control plugin SecurityContextDeny is set if PodSecurityPolicy
+      is not used
+    severity: LOW
+    success: false
+    title: Ensure that the admission control plugin SecurityContextDeny is set if
+      PodSecurityPolicy is not used
+  - category: Kubernetes Security Check
+    checkID: KCV0010
+    description: Limit the rate at which the API server accepts requests.
+    messages:
+    - Ensure that the admission control plugin EventRateLimit is set
+    severity: LOW
+    success: false
+    title: Ensure that the admission control plugin EventRateLimit is set
+  - category: Kubernetes Security Check
+    checkID: KCV0020
+    description: Retain the logs for at least 30 days or as appropriate.
+    messages:
+    - Ensure that the --audit-log-maxage argument is set to 30 or as appropriate
+    severity: LOW
+    success: false
+    title: Ensure that the --audit-log-maxage argument is set to 30 or as appropriate
+  - category: Kubernetes Security Check
+    checkID: KCV0019
+    description: Enable auditing on the Kubernetes API Server and set the desired
+      audit log path.
+    messages:
+    - Ensure that the --audit-log-path argument is set
+    severity: LOW
+    success: false
+    title: Ensure that the --audit-log-path argument is set
+  scanner:
+    name: Trivy
+    vendor: Aqua Security
+    version: 0.10.1
+  summary:
+    criticalCount: 0
+    highCount: 0
+    lowCount: 10
+    mediumCount: 1
